@@ -2,6 +2,9 @@
 
 A production-minded backend service to ingest payment events, manage transaction states, and provide reconciliation reports.
 
+**Live Demo**: [https://setu-payment-service.onrender.com/docs](https://setu-payment-service.onrender.com/docs)
+*(Note: Hosted on Render free tier; may take ~60s to load if inactive.)*
+
 ## Architecture Overview
 
 - **Framework**: FastAPI (Python)
