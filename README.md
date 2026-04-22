@@ -92,6 +92,14 @@ To load the sample events into the database:
   - Settlements recorded without a processed event.
   - Duplicate initiation events with conflicting amounts.
 
+## Deployment
+
+- **Platform**: The service is deployed on **Render**.
+- **Live URL**: [https://setu-payment-service.onrender.com/docs](https://setu-payment-service.onrender.com/docs)
+- **Containerization**: A `Dockerfile` is included in the `service/` directory for consistent deployments.
+- **Infrastructure**: The app runs as a web service with an ephemeral SQLite database. 
+- **Cold Start**: Note that the Render free tier spins down after inactivity. The first request may take ~60 seconds to respond.
+
 ## Assumptions and Tradeoffs
 
 1. **Database**: Used SQLite for ease of local setup. For a large-scale production system, PostgreSQL or a distributed database would be used.
