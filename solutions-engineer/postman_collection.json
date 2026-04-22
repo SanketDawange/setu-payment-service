@@ -1,0 +1,141 @@
+{
+	"info": {
+		"_postman_id": "8a728b12-9e3d-4c31-9f6b-0508d4724bd5",
+		"name": "Setu Hiring Assignment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Ingest Event",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"event_id\": \"test-event-123\",\n  \"event_type\": \"payment_initiated\",\n  \"transaction_id\": \"test-tx-123\",\n  \"merchant_id\": \"merchant_1\",\n  \"merchant_name\": \"QuickMart\",\n  \"amount\": 100.0,\n  \"currency\": \"INR\",\n  \"timestamp\": \"2026-04-22T12:00:00Z\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/events",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"events"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Transactions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/transactions?limit=10&status=settled",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"transactions"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "10"
+						},
+						{
+							"key": "status",
+							"value": "settled"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Transaction Details",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/transactions/6251a96d-9667-4ff2-aa08-cf89e11b1e68",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"transactions",
+						"6251a96d-9667-4ff2-aa08-cf89e11b1e68"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reconciliation Summary",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/reconciliation/summary",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"reconciliation",
+						"summary"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reconciliation Discrepancies",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/reconciliation/discrepancies",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"reconciliation",
+						"discrepancies"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
