@@ -169,4 +169,19 @@ def get_discrepancies(db: Session):
             issue="Duplicate initiation events with conflicting amounts"
         ))
 
+    # 4. Payment marked processed but never settled
+    # We look for transactions in 'payment_processed' state that are not in the 'settled' subquery
+    processed_no_settle = db.query(models.Transaction).filter(
+        models.Transaction.status == "payment_processed",
+        ~models.Transaction.id.in_(db.query(subq_settled))
+    ).limit(50).all() # Limit to avoid overwhelming the response
+
+    for tx in processed_no_settle:
+        discrepancies.append(schemas.DiscrepancyResponse(
+            transaction_id=tx.id,
+            merchant_id=tx.merchant_id,
+            status=tx.status,
+            issue="Payment marked processed but never settled"
+        ))
+
     return discrepancies
