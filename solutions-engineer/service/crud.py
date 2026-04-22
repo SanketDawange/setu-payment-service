@@ -31,7 +31,13 @@ def create_event(db: Session, event: schemas.EventCreate):
     # Idempotency check
     existing_event = db.query(models.Event).filter(models.Event.id == event.event_id).first()
     if existing_event:
-        return db.query(models.Transaction).filter(models.Transaction.id == event.transaction_id).first()
+        # If the event ID exists, it must be for the same transaction ID
+        if existing_event.transaction_id != event.transaction_id:
+            from fastapi import HTTPException
+            raise HTTPException(status_code=400, detail="Event ID already exists for a different transaction")
+        
+        # Return the transaction associated with the existing event
+        return db.query(models.Transaction).filter(models.Transaction.id == existing_event.transaction_id).first()
 
     # Get or create merchant
     merchant = db.query(models.Merchant).filter(models.Merchant.id == event.merchant_id).first()
@@ -48,7 +54,8 @@ def create_event(db: Session, event: schemas.EventCreate):
             merchant_id=event.merchant_id,
             amount=event.amount,
             currency=event.currency,
-            status=event.event_type
+            status=event.event_type,
+            created_at=event.timestamp
         )
         db.add(transaction)
     else:
