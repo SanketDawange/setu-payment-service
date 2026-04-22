@@ -22,21 +22,16 @@ A production-minded backend service to ingest payment events, manage transaction
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/SetuHQ/hiring-assignments.git
-   cd solutions-engineer
+   git clone https://github.com/SanketDawange/setu-payment-service.git
+   cd setu-payment-service/solutions-engineer/service
    ```
 
-2. **Navigate to the service directory**:
-   ```bash
-   cd service
-   ```
-
-3. **Install dependencies**:
+2. **Install dependencies**:
    ```bash
    pip install -r requirements.txt
    ```
 
-4. **Start the service**:
+3. **Start the service**:
    ```bash
    uvicorn main:app --reload
    ```
@@ -75,6 +70,7 @@ To load the sample events into the database:
 - **Description**: Identifies inconsistent states such as:
   - Settlements recorded for failed payments.
   - Settlements recorded without a processed event.
+  - Duplicate initiation events with conflicting amounts.
 
 ## Assumptions and Tradeoffs
 
