@@ -3,8 +3,8 @@ import requests
 import sys
 import os
 
-# Base URL of the running FastAPI service
-BASE_URL = "http://127.0.0.1:8000"
+# Base URL of the service (can be set via environment variable)
+BASE_URL = os.getenv("API_URL", "http://127.0.0.1:8000")
 
 def ingest_file(file_path):
     if not os.path.exists(file_path):
