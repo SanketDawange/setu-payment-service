@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from sqlalchemy import func, and_, or_
-from . import models, schemas
+import models, schemas
 import datetime
 
 def get_transaction(db: Session, transaction_id: str):

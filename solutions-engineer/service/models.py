@@ -1,6 +1,6 @@
 from sqlalchemy import Column, String, Float, DateTime, ForeignKey, Index
 from sqlalchemy.orm import relationship
-from .database import Base
+from database import Base
 import datetime
 
 class Merchant(Base):
